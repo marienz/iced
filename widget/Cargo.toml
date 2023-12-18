@@ -11,6 +11,10 @@ keywords = ["gui", "ui", "graphics", "interface", "widgets"]
 categories = ["gui"]
 
 [features]
+default = ["x11", "wayland", "wayland-dlopen"]
+x11 = ["iced_renderer/x11"]
+wayland = ["iced_renderer/wayland"]
+wayland-dlopen = ["iced_renderer/wayland-dlopen"]
 lazy = ["ouroboros"]
 image = ["iced_renderer/image"]
 svg = ["iced_renderer/svg"]
@@ -29,6 +33,7 @@ path = "../runtime"
 [dependencies.iced_renderer]
 version = "0.1"
 path = "../renderer"
+default-features = false
 
 [dependencies.iced_style]
 version = "0.9"

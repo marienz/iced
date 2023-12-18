@@ -14,10 +14,14 @@ categories = ["gui"]
 image = ["iced_graphics/image"]
 svg = ["resvg"]
 geometry = ["iced_graphics/geometry"]
+default = ["x11", "wayland", "wayland-dlopen"]
+x11 = ["softbuffer/x11"]
+wayland = ["softbuffer/wayland"]
+wayland-dlopen = ["softbuffer/wayland-dlopen"]
 
 [dependencies]
 raw-window-handle = "0.5"
-softbuffer = "0.2"
+softbuffer = { version = "0.2", default-features = false }
 tiny-skia = "0.10"
 cosmic-text = "0.9"
 bytemuck = "1"
