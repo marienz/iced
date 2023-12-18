@@ -15,6 +15,10 @@ rustdoc-args = ["--cfg", "docsrs"]
 all-features = true
 
 [features]
+default = ["x11", "wayland", "wayland-dlopen"]
+x11 = ["iced_renderer/x11"]
+wayland = ["iced_renderer/wayland"]
+wayland-dlopen = ["iced_renderer/wayland-dlopen"]
 lazy = ["ouroboros"]
 image = ["iced_renderer/image"]
 svg = ["iced_renderer/svg"]

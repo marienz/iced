@@ -11,6 +11,10 @@ categories.workspace = true
 keywords.workspace = true
 
 [features]
+default = ["x11", "wayland", "wayland-dlopen"]
+x11 = ["iced_tiny_skia/x11"]
+wayland = ["iced_tiny_skia/wayland"]
+wayland-dlopen = ["iced_tiny_skia/wayland-dlopen"]
 wgpu = ["iced_wgpu"]
 image = ["iced_tiny_skia/image", "iced_wgpu?/image"]
 svg = ["iced_tiny_skia/svg", "iced_wgpu?/svg"]

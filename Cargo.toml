@@ -18,7 +18,7 @@ all-features = true
 maintenance = { status = "actively-developed" }
 
 [features]
-default = ["wgpu", "fira-sans"]
+default = ["wgpu", "fira-sans", "x11", "wayland", "wayland-dlopen", "wayland-csd-adwaita"]
 # Enable the `wgpu` GPU-accelerated renderer backend
 wgpu = ["iced_renderer/wgpu", "iced_widget/wgpu"]
 # Enables the `Image` widget
@@ -55,6 +55,14 @@ multi-window = ["iced_winit/multi-window"]
 advanced = []
 # Enables embedding Fira Sans as the default font on Wasm builds
 fira-sans = ["iced_renderer/fira-sans"]
+# Enables X11 backend support in the shell.
+x11 = ["iced_winit/x11"]
+# Enables wayland backend support in the shell.
+wayland = ["iced_winit/wayland", "iced_widget/wayland"]
+# dlopen()s wayland instead of linking to it.
+wayland-dlopen = ["iced_winit/wayland-dlopen", "iced_widget/wayland-dlopen"]
+# Enables client-side decorations on Wayland
+wayland-csd-adwaita = ["iced_winit/wayland-csd-adwaita"]
 
 [dependencies]
 iced_core.workspace = true
@@ -114,13 +122,13 @@ iced_core = { version = "0.12.2", path = "core" }
 iced_futures = { version = "0.12", path = "futures" }
 iced_graphics = { version = "0.12.1", path = "graphics" }
 iced_highlighter = { version = "0.12", path = "highlighter" }
-iced_renderer = { version = "0.12.1", path = "renderer" }
+iced_renderer = { version = "0.12.1", path = "renderer", default-features = false }
 iced_runtime = { version = "0.12", path = "runtime" }
 iced_style = { version = "0.12", path = "style" }
-iced_tiny_skia = { version = "0.12", path = "tiny_skia" }
+iced_tiny_skia = { version = "0.12", path = "tiny_skia", default-features = false }
 iced_wgpu = { version = "0.12", path = "wgpu" }
-iced_widget = { version = "0.12", path = "widget" }
-iced_winit = { version = "0.12", path = "winit" }
+iced_widget = { version = "0.12", path = "widget", default-features = false }
+iced_winit = { version = "0.12", path = "winit", default-features = false }
 
 async-std = "1.0"
 bitflags = "2.0"
@@ -147,7 +155,7 @@ resvg = "0.36"
 rustc-hash = "1.0"
 smol = "1.0"
 smol_str = "0.2"
-softbuffer = "0.4"
+softbuffer = { version = "0.4", default-features = false }
 syntect = "5.1"
 sysinfo = "0.30"
 thiserror = "1.0"
@@ -163,4 +171,4 @@ web-time = "0.2"
 wgpu = "0.19"
 winapi = "0.3"
 window_clipboard = "0.4.1"
-winit = "0.29"
+winit = { version = "0.29", default-features = false, features = [ "rwh_06" ] }
